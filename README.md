@@ -30,7 +30,15 @@ Options:
   --help                      Show this message and exit.
 ```
 
-V konfiguračním souboru lze nastavit přístupové údaje pro váš účet na [Twitteru](https://twitter.com/).
+## Konfigurační soubor
+
+V konfiguračním souboru lze nastavit přístupové údaje pro váš účet na [Twitteru](https://twitter.com/). Jeho podoba musí být následující:
+
+```
+[twitter]
+key = your-key
+secret = your-secret
+```
 
 ## Příklad použití
 

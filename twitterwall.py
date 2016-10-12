@@ -6,6 +6,7 @@ import requests
 import configparser
 import base64
 import time
+import sys
 
 
 def get_twitter_session(api_key, api_secret):
@@ -26,15 +27,25 @@ def get_twitter_session(api_key, api_secret):
         headers=headers,
         data={'grant_type': 'client_credentials'}
     )
+    if 400 <= r.status_code < 600:
+        for error in r.json()['errors']:
+            print(error['message'])
+        sys.exit(1)
     bearer_token = r.json()['access_token']
     session.auth = bearer_auth
     return session
 
 
-def get_config(config_path):
+def get_credentials(config_path):
     config = configparser.ConfigParser()
     config.read(config_path)
-    return config
+    try:
+        key = config['twitter']['key']
+        secret = config['twitter']['secret']
+    except Exception as e:
+        print("Your config file is invalid, check README")
+        sys.exit(1)
+    return key, secret
 
 
 def print_line():
@@ -85,11 +96,8 @@ def twitterwall(query, conf, count, loop, retweets):
     """
     Simple program which reads posts from Twitter via its API.
     """
-    config = get_config(conf)
-    session = get_twitter_session(
-        config['twitter']['key'],
-        config['twitter']['secret']
-    )
+    key, secret = get_credentials(conf)
+    session = get_twitter_session(key, secret)
 
     since_id = 0
     print_line()
