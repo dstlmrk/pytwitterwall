@@ -1,0 +1,33 @@
+<!doctype html>
+<head>
+   <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+</head>
+<title>twitterwall</title>
+<style>
+   body {
+   margin-left: 100px;
+   margin-right: 100px;
+   }
+</style>
+<body>
+   <h1>twitterwall</h1>
+   <br>
+   <ul class="list-group">
+   {% for status in statuses %}
+   <li class="list-group-item">
+      <div class="row">
+         <div class="col-md-1">
+            <a href="https://twitter.com/{{status.user.screen_name}}">
+               <center>{{status.user.profile_image_url|img}}</center>
+            </a>
+         </div>
+         <div class="col-md-11">
+            <b>{{status.user.name}}</b>
+            <span class="label label-primary">@{{status.user.screen_name}}</span>
+            <small>{{status.created_at|convert_time}}</small>
+            <p>{{status|get_tweet}}</p>
+         </div>
+      </div>
+   </li>
+   {% endfor %}
+</body>

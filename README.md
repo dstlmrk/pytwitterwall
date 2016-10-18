@@ -1,33 +1,28 @@
 # Twitter Wall
 
-Twitter Wall pro terminál. Aplikace, která bude zobrazovat tweety odpovídající určitému hledání do terminálu v nekonečné smyčce.
-
-Aplikace načte určitý počet tweetů odpovídající hledanému výrazu, zobrazí je a v nějakém intervalu se bude dotazovat na nové tweety (použijte API argument since_id).
-
-Pomocí argumentů půjde nastavit:
-
-* cesta ke konfiguračnímu souboru s přístupovými údaji
-* hledaný výraz
-* počet na začátku načtených tweetů
-* časový interval dalších dotazů
-* nějaké vlastnosti ovlivňující chování (např. zda zobrazovat retweety)
-
 ## Spuštění
 
 ```
-Usage: twitterwall.py [OPTIONS]
+Usage: run.py [OPTIONS] COMMAND [ARGS]...
 
   Simple program which reads posts from Twitter via its API.
 
 Options:
-  -q, --query TEXT            Query string.
-  --conf TEXT                 Configuration path. Defaults to ./conf/auth.cfg.
-  --count INTEGER             Count of first tweets, up to a maximum of 100.
-                              Defaults to 15.
-  --loop INTEGER              How often tweets will be reloaded in seconds.
-                              Defaults to 5.
-  --retweets / --no-retweets  Flag that shows retweets. Defaults to true.
-  --help                      Show this message and exit.
+  --conf TEXT                     Configuration path [./conf/auth.cfg].
+  --initial-count INTEGER         Count of first tweets [15]. Max 100.
+  --retweets-are-allowed / --no-retweets
+                                  Flag that shows retweets. Defaults to true.
+  --help                          Show this message and exit.
+
+Commands:
+  console  Run the console app
+  web      Run the web app
+```
+
+Webová aplikace příjímá hledaný řetězec pomocí URL adresy:
+
+```
+/search/fit/put-your-query
 ```
 
 ## Konfigurační soubor
@@ -43,39 +38,40 @@ secret = your-secret
 ## Příklad použití
 
 ```
-$ ./twitterwall.py
-Your query string [#python]: hroncok
+$ ./run.py --no-retweets console
+Your query string [#python]: 
 ----------
-RT @stillgray: Reading this really upset me. SJWs went Harambe on an autistic man who wanted high-fives and sent him death threats. https:/…
+How to get item's position in a list? #python #list https://t.co/npvrx5fFCs
 ----------
-@JakubJirutka Těžko. Už od státnic v #cvutsenat nejsem a být nemůžu. @FIT_CTU
-----------
-@hroncok Doufám, že tě můžeme zvolit i na další období?! @fit_ctu
-----------
-Studenti @FIT_CTU, je mezi vámi nějaký frajer, či frajerka, co bude na #cvutsenat pořádně prudit a tweetovat? https://t.co/uEdt4ybkPj
-----------
-RT @michalillich: Ne zcela optimistická zpráva o ANO.
-(Souhlasím a navíc myslím, že ANO v druhém kole moc senátorů nezíská)
-https://t.co/Jc…
-----------
-@martinvarecha @viktorvesely @rozanek smysl ta úprava nemá
-----------
-@honzajavorek @naPyvo se také chystám. Střelnice je obvykle na hodinku, ale nemá smysl spěchat. Půjdeme tedy s @hroncok a příp. @petrjoachim
-----------
-@lumirbalhar @petrjoachim @hroncok já to budu mít mega nabité, pro mě nepřipadá v úvahu - navíc ve čtvrtek je v Brně @naPyvo ;-)
-----------
-@petrjoachim @hroncok @honzajavorek Padl nápad skočit na střelnici před PyConem ve čtvrtek 27. 10. odpoledne. Co Vy na to?
-----------
-@lumirbalhar @hroncok @honzajavorek to zni jako plan
-----------
-@lumirbalhar @hroncok @petrjoachim já si to nechám na sprint, v Brně do Pyconu nebudu
-----------
-@hroncok Oukej, tak třeba příští týden v Brně? Objednám střelnici a vezmu více sypání. @honzajavorek @petrjoachim
-----------
-@lumirbalhar jo! @honzajavorek @petrjoachim
-----------
-@hroncok @honzajavorek @petrjoachim Chcete si to zkusit a zajit se mnou na strelnici?
-----------
-@hroncok @honzajavorek @petrjoachim Ne. Strelba je skvela zabava a svym zpusobem meditace. Kdo to nezkusil, nepochopi. Obrana je jen bonus.
-----------
+3 simple things you can do every day to harness the power of #PyCharm keyboard shortcuts and more https://t.co/V3U0hmcIVV #python
+...
 ```
+
+```
+$ ./run.py web --debug
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 133-764-633
+...
+```
+
+## Zadání 1. úkolu
+
+Twitter Wall pro terminál. Aplikace, která bude zobrazovat tweety odpovídající určitému hledání do terminálu v nekonečné smyčce.
+
+Aplikace načte určitý počet tweetů odpovídající hledanému výrazu, zobrazí je a v nějakém intervalu se bude dotazovat na nové tweety (použijte API argument since_id).
+	
+Pomocí argumentů půjde nastavit:
+
+* cesta ke konfiguračnímu souboru s přístupovými údaji
+* hledaný výraz
+* počet na začátku načtených tweetů
+* časový interval dalších dotazů
+* nějaké vlastnosti ovlivňující chování (např. zda zobrazovat retweety)
+
+## Zadání 2. úkolu
+
+Konzole není pro Twitter Wall dostatečně vhodné médium, doplňte do aplikace webový frontend, který bude zobrazovat výsledky hledání. Hledaný pojem by měl jít zadat pomocí URL.
+
+Pro plný počet bodů musí rozhraní zobrazovat avatary uživatelů a zpracovávat entity jako obrázky, odkazy, zmínky a hash tagy. Ideální je k tomu využít filtr.
