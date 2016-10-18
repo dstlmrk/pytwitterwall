@@ -12,7 +12,6 @@ app = Flask("twitterwall")
 
 @app.route('/')
 def index():
-    print(url_for('static', filename='bootstrap.min.css'))
     name = "TwitterWall"
     info = (
         "If you want to search something, put your query string"
