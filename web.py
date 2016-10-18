@@ -20,7 +20,7 @@ def index():
     return Markup('<h1>{}</h1><p>{}</p>').format(name, info)
 
 def get_twitterwall():
-    return app.config.get("twitterwall") or TwitterWall()
+    return app.config.get("twitterwall") or Twitterwall()
 
 # TODO: pokud chci zpracovavat i hashtagy, musel bych
 # vstup escapovat pres nejaky formular
