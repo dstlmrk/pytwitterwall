@@ -31,14 +31,14 @@ V konfiguračním souboru (implicitně `./conf/auth.cfg`) lze nastavit přístup
 
 ```
 [twitter]
-key = your-key
-secret = your-secret
+key = your-api-key
+secret = your-api-secret
 ```
 
 ## Příklad použití
 
 ```
-$ ./run.py --no-retweets console
+$ pytwitterwall --no-retweets console
 Your query string [#python]: 
 ----------
 How to get item's position in a list? #python #list https://t.co/npvrx5fFCs
@@ -48,7 +48,7 @@ How to get item's position in a list? #python #list https://t.co/npvrx5fFCs
 ```
 
 ```
-$ ./run.py web --debug
+$ pytwitterwall web --debug
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
  * Restarting with stat
  * Debugger is active!
