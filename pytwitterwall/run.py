@@ -3,8 +3,8 @@
 
 import click
 import sys
-from twitterwall import Twitterwall
-from web import app
+from pytwitterwall.base import Twitterwall
+from pytwitterwall.web import app
 
 
 @click.group()
@@ -41,5 +41,7 @@ def console(twitterwall, query, loop):
     """Run the console app"""
     twitterwall.infinite_loop(query, loop)
 
-if __name__ == '__main__':
+cli(prog_name='pytwitterwall')
+
+def main():
     cli()

@@ -4,10 +4,10 @@
 from datetime import datetime
 from flask import Flask, render_template
 from jinja2 import Markup
-from twitterwall import Twitterwall
+from pytwitterwall.base import Twitterwall
 
 
-app = Flask("twitterwall")
+app = Flask("pytwitterwall")
 
 
 @app.route('/')
@@ -38,7 +38,7 @@ def search(query=None):
         else:
             statuses.append(status)
     return render_template(
-        'twitterwall.html', statuses=statuses, query=query
+        'pytwitterwall.html', statuses=statuses, query=query
     )
 
 

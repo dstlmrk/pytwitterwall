@@ -3,7 +3,7 @@
 ## Spuštění
 
 ```
-Usage: run.py [OPTIONS] COMMAND [ARGS]...
+Usage: pytwitterwall [OPTIONS] COMMAND [ARGS]...
 
   Simple program which reads posts from Twitter via its API.
 
@@ -22,12 +22,12 @@ Commands:
 Webová aplikace příjímá hledaný řetězec pomocí URL adresy:
 
 ```
-/search/fit/put-your-query
+/search/put-your-query
 ```
 
 ## Konfigurační soubor
 
-V konfiguračním souboru lze nastavit přístupové údaje pro váš účet na [Twitteru](https://twitter.com/). Jeho podoba musí být následující:
+V konfiguračním souboru (implicitně `./conf/auth.cfg`) lze nastavit přístupové údaje pro váš účet na [Twitteru](https://twitter.com/). Jeho podoba musí být následující:
 
 ```
 [twitter]
@@ -55,6 +55,13 @@ $ ./run.py web --debug
  * Debugger pin code: 133-764-633
 ...
 ```
+
+## Požadavky
+
+* click
+* requests
+* Flask
+* Jinja2
 
 ## Zadání 1. úkolu
 
