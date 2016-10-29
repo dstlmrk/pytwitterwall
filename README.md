@@ -43,7 +43,7 @@ Your query string [#python]:
 ----------
 How to get item's position in a list? #python #list https://t.co/npvrx5fFCs
 ----------
-3 simple things you can do every day to harness the power of #PyCharm keyboard shortcuts and more https://t.co/V3U0hmcIVV #python
+3 simple things you can do every day to harness the power of #PyCharm keyboard shortcuts
 ...
 ```
 
