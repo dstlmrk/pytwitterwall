@@ -6,9 +6,8 @@ from flask import Flask, render_template
 from jinja2 import Markup
 from pytwitterwall.base import Twitterwall
 
-
+CONFIG_FILE = "./conf/auth.cfg"
 app = Flask("pytwitterwall")
-
 
 @app.route('/')
 def index():
@@ -20,7 +19,11 @@ def index():
     return Markup('<h1>{}</h1><p>{}</p>').format(name, info)
 
 def get_twitterwall():
-    return app.config.get("twitterwall") or Twitterwall()
+    api_key, api_secret = Twitterwall.get_credentials(CONFIG_FILE)
+    print(app.config.get("session"))
+    return app.config.get("twitterwall") or Twitterwall(
+        api_key, api_secret, session=app.config.get("session")
+    )
 
 # TODO: pokud chci zpracovavat i hashtagy, musel bych
 # vstup escapovat pres nejaky formular

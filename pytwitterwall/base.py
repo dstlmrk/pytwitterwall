@@ -11,15 +11,15 @@ from jinja2 import Markup
 
 class Twitterwall(object):
 
-    def __init__(self, config_path="./conf/auth.cfg",
-                 initial_count=15, retweets_are_allowed=True):
-        self.session = self._create_session(
-            *self._get_credentials(config_path)
-        )
+    def __init__(self, api_key=None, api_secret=None,
+                 initial_count=15, retweets_are_allowed=True, session=None):
+        self.session = session
+        self._create_session(api_key, api_secret)
         self.initial_count = initial_count
         self.retweets_are_allowed = retweets_are_allowed
 
-    def _get_credentials(self, config_path):
+    @staticmethod
+    def get_credentials(config_path):
         config = configparser.ConfigParser()
         config.read(config_path)
         try:
@@ -36,7 +36,7 @@ class Twitterwall(object):
             req.headers['Authorization'] = 'Bearer ' + bearer_token
             return req
 
-        session = requests.Session()
+        session = self.session or requests.Session()
         secret = '{}:{}'.format(api_key, api_secret)
         secret64 = base64.b64encode(secret.encode('ascii')).decode('ascii')
 
@@ -58,8 +58,7 @@ class Twitterwall(object):
 
         bearer_token = r.json()['access_token']
         session.auth = bearer_auth
-
-        return session
+        self.session = session
 
     def search_tweets(self, query, since_id=0, **params):
         params['q'] = query

@@ -40,4 +40,6 @@ setup(
             'templates/pytwitterwall.html'
         ]
     },
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest', 'betamax', 'flexmock'],
 )

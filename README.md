@@ -39,7 +39,7 @@ secret = your-api-secret
 
 ```
 $ pytwitterwall --no-retweets console
-Your query string [#python]: 
+Your query string [#python]:
 ----------
 How to get item's position in a list? #python #list https://t.co/npvrx5fFCs
 ----------
@@ -56,6 +56,18 @@ $ pytwitterwall web --debug
 ...
 ```
 
+## Testování
+
+```
+$ python setup.py test
+```
+
+Pro testování API (aktuální data, znovunačtení kazet) je nutné zadat přístupové údaje k Twitter API pomocí systémové proměnné:
+
+```
+$ export AUTH_FILE="./conf/auth.cfg"
+```
+
 ## Požadavky
 
 * click
@@ -68,7 +80,7 @@ $ pytwitterwall web --debug
 Twitter Wall pro terminál. Aplikace, která bude zobrazovat tweety odpovídající určitému hledání do terminálu v nekonečné smyčce.
 
 Aplikace načte určitý počet tweetů odpovídající hledanému výrazu, zobrazí je a v nějakém intervalu se bude dotazovat na nové tweety (použijte API argument since_id).
-	
+
 Pomocí argumentů půjde nastavit:
 
 * cesta ke konfiguračnímu souboru s přístupovými údaji

@@ -19,7 +19,8 @@ def cli(ctx, conf, initial_count, retweets_are_allowed):
     """
     Simple program which reads posts from Twitter via its API.
     """
-    ctx.obj = Twitterwall(conf, initial_count, retweets_are_allowed)
+    api_key, api_secret = Twitterwall.get_credentials(conf)
+    ctx.obj = Twitterwall(api_key, api_secret, initial_count, retweets_are_allowed)
 
 
 @cli.command()
