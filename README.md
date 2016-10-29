@@ -1,5 +1,9 @@
 # Twitter Wall
 
+## Stažení
+
+Stáhnout aktuální verzi balíčku můžete na [PyPI](https://testpypi.python.org/pypi/pytwitterwall/).
+
 ## Spuštění
 
 ```
