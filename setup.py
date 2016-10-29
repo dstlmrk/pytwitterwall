@@ -8,7 +8,7 @@ with open('README.md') as f:
 
 setup(
     name='pytwitterwall',
-    version='0.3.5',
+    version='0.4',
     description='Simple program which reads posts from Twitter via its API.',
     long_description=long_description,
     author='Marek Dostál',
