@@ -3,3 +3,5 @@ include README.md
 include pytwitterwall/static/bootstrap.min.css
 include pytwitterwall/templates/pytwitterwall.html
 include conf/auth.cfg
+recursive-include tests/fixtures *
+recursive-include tests *.py
