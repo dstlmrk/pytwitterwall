@@ -10,6 +10,7 @@ from jinja2 import Markup
 
 
 class Twitterwall(object):
+    ''''''
 
     def __init__(self, api_key=None, api_secret=None,
                  initial_count=15, retweets_are_allowed=True, session=None):
@@ -20,6 +21,9 @@ class Twitterwall(object):
 
     @staticmethod
     def get_credentials(config_path):
+        '''
+        Parse api key and api secret from config file.
+        '''
         config = configparser.ConfigParser()
         config.read(config_path)
         try:
@@ -31,7 +35,10 @@ class Twitterwall(object):
         return api_key, api_secret
 
     def _create_session(self, api_key, api_secret):
-
+        '''
+        Create session if it still doesn't exists.
+        In all cases gets token for next requests.
+        '''
         def bearer_auth(req):
             req.headers['Authorization'] = 'Bearer ' + bearer_token
             return req

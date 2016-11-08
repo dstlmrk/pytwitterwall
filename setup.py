@@ -3,12 +3,12 @@
 
 from setuptools import setup
 
-with open('README.md') as f:
+with open('README.rst') as f:
     long_description = ''.join(f.readlines())
 
 setup(
     name='pytwitterwall',
-    version='0.4',
+    version='0.5',
     description='Simple program which reads posts from Twitter via its API.',
     long_description=long_description,
     author='Marek Dostál',
